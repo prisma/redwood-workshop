@@ -1,6 +1,6 @@
 import { Link, routes } from '@redwoodjs/router'
 
-const Article = ({ article }) => {
+const Article = ({ article, views }) => {
   return (
     <article>
       <header>
@@ -9,6 +9,7 @@ const Article = ({ article }) => {
         </h2>
       </header>
       <div className="mt-2 text-gray-900 font-light">{article.body}</div>
+      <h1>{JSON.stringify(views)}</h1>
     </article>
   )
 }
