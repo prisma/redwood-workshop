@@ -9,10 +9,19 @@ generator client {
 }
 
 model Post {
-  id        Int      @id @default(autoincrement())
+  id        Int        @id @default(autoincrement())
   title     String
   body      String
-  createdAt DateTime @default(now())
+  createdAt DateTime   @default(now())
+  PostView  PostView[]
+}
+
+model PostView {
+  id        Int      @id @default(autoincrement())
+  timestamp DateTime @default(now())
+  userAgent String
+  post      Post     @relation(fields: [postId], references: [id])
+  postId    Int
 }
 
 model Contact {
@@ -24,9 +33,9 @@ model Contact {
 }
 
 model User {
-  id                  Int @id @default(autoincrement())
+  id                  Int       @id @default(autoincrement())
   name                String?
-  email               String @unique
+  email               String    @unique
   hashedPassword      String
   salt                String
   resetToken          String?
